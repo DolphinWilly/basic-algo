@@ -15,8 +15,21 @@ public abstract class ValidTree {
     public abstract boolean validTree(int n, int[][] edges);
 
     public static void main(String args[]) {
+        System.out.println("Test Valid Tree DFS");
         // Test DFS valid tree
         ValidTree validTreeDFS = new ValidTreeDFS();
+        // valid
+        System.out.println(validTreeDFS.validTree(testCase1.n, testCase1.edges));
+        System.out.println(validTreeDFS.validTree(testCase5.n, testCase5.edges));
+
+        // not valid
+        System.out.println(validTreeDFS.validTree(testCase2.n, testCase2.edges));
+        System.out.println(validTreeDFS.validTree(testCase3.n, testCase3.edges));
+        System.out.println(validTreeDFS.validTree(testCase4.n, testCase4.edges));
+
+        System.out.println("Test Valid Tree Union Find");
+
+        validTreeDFS = new ValidTreeUnionFind();
         // valid
         System.out.println(validTreeDFS.validTree(testCase1.n, testCase1.edges));
         System.out.println(validTreeDFS.validTree(testCase5.n, testCase5.edges));
