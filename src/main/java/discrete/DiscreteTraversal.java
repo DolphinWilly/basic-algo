@@ -34,4 +34,42 @@ public class DiscreteTraversal {
         }
         return maxLength;
     }
+
+    /**
+     * @param s the input string
+     * @return the longest palindromic substring
+     *
+     * if the structure can be recursively buildup in terms of length,
+     * we can try iterating on length
+     */
+    public String longestPalindrome(String s) {
+        if (s == null || s.length() == 0)
+            return "";
+        int n = s.length();
+        String ans = "";
+        boolean[][] dp = new boolean[n][n];
+        int ml = 0;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j+i-1 < n; j++) {
+                if (i==1) {
+                    dp[j][j+i-1] = true;
+                } else if (i==2) {
+                    dp[j][j+i-1] = s.charAt(j) == s.charAt(j+i-1);
+                } else {
+                    dp[j][j+i-1] = (s.charAt(j) == s.charAt(j+i-1)) && dp[j+1][j+i-2];
+                }
+            }
+        }
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j+i-1 < n; j++) {
+                if (dp[j][j+i-1]) {
+                    if (i > ml) {
+                        ans = s.substring(j,i+j);
+                        ml = i;
+                    }
+                }
+            }
+        }
+        return ans;
+    }
 }
